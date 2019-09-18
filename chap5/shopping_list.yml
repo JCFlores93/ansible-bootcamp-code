@@ -1,0 +1,19 @@
+---
+    - name: shopping list
+      type: vegetables
+      priority: 1
+      items: 
+        - onion:
+            size: small
+            shape: round
+            color: red
+            qty: 1.5kg
+        - methi: 
+            height: less
+            leaves: green
+            qty: 1bundle
+        - potato:
+            size: medium
+            eyes: false
+            qty: 1kg
+...
