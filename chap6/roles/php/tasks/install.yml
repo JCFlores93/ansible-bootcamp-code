@@ -1,0 +1,10 @@
+---
+    - name: install php packages
+      yum:
+        name:
+            - php
+            - php-mysql
+        state: installed      
+      notify: Restart apache server
+
+...
