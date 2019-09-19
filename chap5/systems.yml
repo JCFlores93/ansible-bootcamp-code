@@ -2,6 +2,7 @@
     - name: base systems configurations for linux servers
       hosts: prod
       become: true
+      gather_facts: no
       tasks:
         - name: create admin user
           user: 
@@ -28,6 +29,21 @@
 
         - name: start ntp service
           service:
-            name: ntp
+            name: ntpd
             state: started
+
+    - name: configuring app servers only
+      hosts: app
+      become: true
+      gather_facts: true
+      tasks:
+        - name: create a deploy user
+          user:
+            name: deploy
+            state: present
+            
+        - name: install git 
+          package: 
+            name: git
+            state: installed
 ...
