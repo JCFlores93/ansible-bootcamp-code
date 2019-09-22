@@ -6,5 +6,4 @@
             - php-mysql
         state: installed      
       notify: Restart apache server
-
 ...

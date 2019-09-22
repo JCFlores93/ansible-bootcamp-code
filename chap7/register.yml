@@ -1,0 +1,15 @@
+---
+    - name: register variables example
+      hosts: local
+      gather_facts: false
+      tasks:
+        - name: run a shell command and register result
+          shell: "/sbin/ifconfig eth1"
+          register: result
+
+        - name: print registered variable
+          debug: var=result  
+
+        - name: execute this conditionally
+          command: uptime
+          when: result.changed == true

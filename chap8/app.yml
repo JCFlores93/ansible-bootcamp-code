@@ -5,7 +5,9 @@
       fav:
         fruit: mango
     roles:
-      - apache
-      - php 
+      - { role: apache, tags: www}
+      - { role: php, tags: ['www', 'php']}
       - frontend
+    tags:
+        - frontend
       

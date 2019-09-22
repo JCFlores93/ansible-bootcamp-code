@@ -1,0 +1,33 @@
+---
+    - name: create directory
+      file:
+            path: /opt/app/release
+            state: directory
+            recurse: yes
+            mode: 0755
+            group: apache
+            owner: apache
+
+    - name: install package unzip
+      package: 
+        name:
+            - unzip
+        state: present
+
+    - name: Download and extract the release
+      unarchive:
+        src: https://github.com/devopsdemoapps/devops-demo-app/archive/1.1.tar.gz
+        dest: /opt/app/release
+        owner: apache
+        group: apache
+        creates: /opt/app/release/devops-demo-app-1.1
+        remote_src: yes
+
+    - name: create a symlink
+      file:
+        src: /opt/app/release/devops-demo-app-1.1
+        dest: /var/www/html/app
+        owner: apache
+        group: apache
+        state: link
+...
