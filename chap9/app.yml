@@ -7,7 +7,7 @@
     roles:
       - { role: apache, tags: www }
       - { role: php, tags: [ 'www', 'php' ] }
-      - { role: frontend, tags: devopsdemo }
+      - { role: frontend, tags: devopsdemo, when: ansible_os_family == 'Redhat' }
     tags: 
       - frontend
       

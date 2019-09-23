@@ -4,3 +4,20 @@
     become: yes
     roles:
       - { role: geerlingguy.mysql }
+    tasks:
+      - name: download database schema
+        get_url:
+          url: https://raw.githubusercontent.com/devopsdemoapps/master/data/devops-demo-1.0.sql
+          dest: /tmp/devops-demo-1.0.sql
+          mode: 0444
+        tags: schema
+
+      - name: Schema Migrate
+        mysql_db:
+          name: "{{ dbconn.db }}"
+          login_host: "{{ dbconn. host }}"
+          login_password: "{{ dbconn.pass }}"
+          login_user: "{{ dbconn.db }}"
+          state: import
+          target: /tmp/devops-demo-1.0.sql
+        tags: schema

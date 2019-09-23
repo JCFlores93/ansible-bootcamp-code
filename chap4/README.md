@@ -86,3 +86,14 @@ ansible-playbook db.yml
 ansible db -b -a "service mysqld status"
 
 ansible db -b -a "/sbin/ifconfig eth0"
+
+ansible all -m setup -a "filter=ansible_os_family"
+ansible-playbook -i environments/staging site.yml --list-hosts
+
+ansible-vault encrypt vault/api_keys
+ansible-vault view vault/api_keys
+ansible-playbook test_vault.yml --ask-vault-pass
+ansible-playbook test_vault.yml --vault-password-file ~/.vault
+ansible-playbook test_vault.yml --vault-password-file=~/.vault
+
+ansible-vault rekey vault/api_keys
