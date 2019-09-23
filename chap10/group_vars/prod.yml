@@ -1,19 +1,7 @@
 ---
-
-  users:
-    admin:
-      uid: 5001
-      shell: /bin/bash
-      home: /home/admin
-      state: present
-    dojo:
-      state: absent
-      
-  systems: 
-    packages: 
-      - ntp 
-      - tree 
-      - vim
+  app:
+    version: 1.5
+    env: prod
 
   fav:
     color: yellow
